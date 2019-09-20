@@ -1,0 +1,10 @@
+<mat-toolbar class="mat-primary">
+  <mat-toolbar-row>
+    <button type="button" mat-button matTooltip="FullScreen" class="btn-fullscreen" (click)="goFullScreen()">
+      <mat-icon *ngIf="!fullscreen">fullscreen</mat-icon>
+      <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+

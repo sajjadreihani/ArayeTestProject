@@ -1,0 +1,15 @@
+<div class="body-content">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+      <app-nav-menu></app-nav-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class='body-content offset-lg-2 offset-md-2 offset-sm-4' id="container">
+      <app-admin-header></app-admin-header>
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+
+</div>
+

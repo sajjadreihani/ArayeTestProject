@@ -1,0 +1,35 @@
+<div class="logo">
+  <p>Management</p>
+</div>
+<mat-list style="padding: 0;padding-bottom: 10px !important;">
+
+  <a mat-list-item (click)="collpaseAll()" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/Home"]' matRipple [matRippleColor]="'#d9d9d922'" role="listitem">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard</span>
+  </a>
+  <a mat-list-item (click)="collpaseAll()" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/ImportData"]' matRipple [matRippleColor]="'#d9d9d922'" role="listitem">
+    <mat-icon>data_usage</mat-icon>
+    <span>Import Data</span>
+  </a>
+
+  <a mat-list-item (click)="MainInfo=!MainInfo" matRipple [matRippleColor]="'#d9d9d922'" role="listitem">
+    <mat-icon>notes</mat-icon>
+    <span>News</span>
+    <mat-icon class="expand" *ngIf="!MainInfo">expand_more</mat-icon>
+    <mat-icon class="expand" *ngIf="MainInfo">expand_less</mat-icon>
+  </a>
+  <mat-nav-list mat-list-item class="expanding" role="list" *ngIf="MainInfo">
+    <a mat-list-item matRipple [matRippleColor]="'#d9d9d922'" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/AddNews"]'>
+      <mat-icon>add</mat-icon>
+      <span>Add News</span>
+    </a>
+    <a mat-list-item matRipple [matRippleColor]="'#d9d9d922'" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/NewsList"]'>
+      <mat-icon>list_alt</mat-icon>
+      <span>News List</span>
+    </a>
+  </mat-nav-list>
+  <a mat-list-item (click)="collpaseAll()" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/MessagesList"]' matRipple [matRippleColor]="'#d9d9d922'" role="listitem">
+    <mat-icon>chat</mat-icon>
+    <span>Messages List</span>
+  </a>
+</mat-list>

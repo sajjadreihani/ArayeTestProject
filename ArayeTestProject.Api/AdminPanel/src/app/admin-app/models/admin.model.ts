@@ -1,19 +1,27 @@
-export interface Login {
+export interface Sale {
+  id: number;
+  cityName: string;
   userName: string;
-  password: string;
-  rememberMe: boolean;
+  productName: string;
+  productId: string;
+  price: number;
 }
-export interface News {
-  title: string;
-  content: string;
-  created: string;
+export interface SaleFilter {
+  productName: string;
+  productId: string;
+  maxPrice: number;
+  minPrice: number;
+  cityName: string;
+  userName: string;
+  page: number;
+  count: number;
   id: number;
 }
-export interface ShowMessage {
-  message: string;
-  email: string;
-  fullName: string;
-  subject: string;
-  id: number;
-  created: string;
+export interface City {
+  Id: number;
+  name: string;
+}
+export interface Product {
+  productId: string;
+  productName: string;
 }

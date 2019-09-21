@@ -1,6 +1,8 @@
-﻿using ArayeTestProject.Api.Presistences.Context;
+﻿using System;
+using ArayeTestProject.Api.Presistences.Context;
 using ArayeTestProject.Api.Presistences.IRepositories;
 using ArayeTestProject.Api.Presistences.Repositories;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,11 +31,12 @@ namespace ArayeTestProject.Api {
             services.Configure<FormOptions> (x => {
                 x.MultipartBodyLengthLimit = int.MaxValue;
             });
+            services.AddAutoMapper (AppDomain.CurrentDomain.GetAssemblies ());
 
             services.AddTransient<IMainRepository, MainRepository> ();
             //In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles (configuration => {
-                configuration.RootPath = "ClientApp/dist/browser";
+                configuration.RootPath = "AdminPanel/dist/browser";
             });
         }
 
@@ -54,7 +57,7 @@ namespace ArayeTestProject.Api {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "AdminPanel";
                 if (env.IsDevelopment ()) {
                     //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                     spa.UseAngularCliServer (npmScript: "start");

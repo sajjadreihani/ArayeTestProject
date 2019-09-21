@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpRequest } from '@angular/common/http';
-import { Login, News, ShowMessage } from '../models/admin.model';
+import { Sale, City, Product, SaleFilter } from '../models/admin.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -11,53 +11,40 @@ const httpOptions = {
 export class AdminService {
 
   constructor(private http: HttpClient) { }
-  loggedIn() {
-    return this.http.get('/api/admin/loggedin');
-  }
 
-  Login(login: Login) {
-    let body = JSON.stringify(login);
-    return this.http.post('/api/main/login', body, httpOptions)
-  }
-
-  LogOut() {
-    return this.http.post('/api/main/logout', '', httpOptions)
-  }
-
-  ChangePassword(password) {
-    let body = JSON.stringify({ 'password': password });
-    return this.http.post('/api/admin/ChangePassword?password=' + password, '', httpOptions)
-  }
   UploadData(file) {
     const formData: FormData = new FormData();
     console.log(file);
-    formData.append('dataFile', file, file.name);
-    const uploadReq = new HttpRequest('POST', `/api/admin/RenewData`, formData);
+    formData.append('file', file, file.name);
+    const uploadReq = new HttpRequest('POST', `/api/excel/import`, formData);
     return this.http.request(uploadReq);
   }
 
-  CreateNews(News: News) {
-    let body = JSON.stringify(News);
-    return this.http.post('/api/admin/CreateNews', body, httpOptions)
+  CreateSale(sale: Sale) {
+    const body = JSON.stringify(sale);
+    return this.http.post('/api/sale/add', body, httpOptions);
   }
-  EditNews(news: News) {
-    let body = JSON.stringify(news);
-    return this.http.post('/api/admin/EditNews', body, httpOptions)
+  EditSale(sale: Sale) {
+    const body = JSON.stringify(sale);
+    return this.http.post('/api/sale/update', body, httpOptions);
   }
-  RemoveNews(newsId) {
-    return this.http.post('/api/admin/RemoveNews/' + newsId, '', httpOptions)
+  RemoveSale(sale: Sale) {
+    const body = JSON.stringify(sale);
+    return this.http.post('/api/sale/remove/', body, httpOptions);
   }
-  GetNewsList() {
-    return this.http.get<News[]>('/api/admin/NewsList')
+  GetSaleList(filter: SaleFilter) {
+    const body = JSON.stringify(filter);
+    return this.http.post<Sale[]>('/api/sale/getlist', body, httpOptions);
   }
-  GetNews(newsId) {
-    return this.http.get<News>('/api/admin/News/' + newsId)
+
+  GetUserNameList(searchKey) {
+    return this.http.get<string[]>('/api/search/username?searchKey=' + searchKey);
   }
-  GetMessageList() {
-    return this.http.get<ShowMessage[]>('/api/admin/Messages')
+  GetProductNameList(searchKey) {
+    return this.http.get<Product[]>('/api/search/productname?searchKey=' + searchKey);
   }
-  RemoveMessage(mesId) {
-    return this.http.post('/api/admin/RemoveMessage/' + mesId, '', httpOptions)
+  GetCityNameList(searchKey) {
+    return this.http.get<City[]>('/api/search/cityname?searchKey=' + searchKey);
   }
 
 }

@@ -1,20 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ArayeTestProject.Api.Application.Models.Domain;
-using ArayeTestProject.Api.Application.Models.ExcelFile;
 using ArayeTestProject.Api.Extensions;
 using ArayeTestProject.Api.Presistences.IRepositories;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
 using NPOI.HSSF.UserModel;
@@ -92,12 +86,14 @@ namespace ArayeTestProject.Api.Application.Commands {
                                         CityId = cities.First (c => c.Name == row.GetCell (0).StringCellValue).Id,
                                             UserName = row.GetCell (1).StringCellValue,
                                             ProductName = row.GetCell (2).StringCellValue,
-                                            ProductId =  row.GetCell (3).StringCellValue,
+                                            ProductId = row.GetCell (3).StringCellValue,
                                             Price = (long) row.GetCell (4).NumericCellValue,
                                     });
                                 }
                                 if (sales.Count > 0)
                                     await repository.AddSales (sales);
+                                if (File.Exists (fullPath))
+                                    File.Delete (fullPath);
                             }
                         }
                     }

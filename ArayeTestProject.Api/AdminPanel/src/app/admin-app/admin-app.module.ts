@@ -26,6 +26,9 @@ import { AdminService } from './services/admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddSaleComponent } from './components/add-sale/add-sale.component';
+import { EditNewsComponent } from './components/edit-news/edit-news.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AdminappComponent,
     NavMenuComponent,
     AdminHeaderComponent,
+    AddSaleComponent,
+    EditNewsComponent,
+    NewsListComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +70,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
           { path: '', redirectTo: 'Home', pathMatch: 'full' },
           { path: 'Home', component: HomeComponent },
           { path: 'ImportData', component: ImportDataComponent },
+          { path: 'AddSale', component: AddSaleComponent },
+          { path: 'EditSale/:id', component: EditNewsComponent },
+          { path: 'SaleList', component: NewsListComponent },
 
           { path: '**', redirectTo: 'Home' },
         ]

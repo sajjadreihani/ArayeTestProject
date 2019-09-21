@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ArayeTestProject.Api.Application.Models.Domain;
+using ArayeTestProject.Api.Application.Models.Sales;
 using ArayeTestProject.Api.Presistences.Context;
 using ArayeTestProject.Api.Presistences.IRepositories;
 using EFCore.BulkExtensions;
@@ -35,13 +36,14 @@ namespace ArayeTestProject.Api.Presistences.Repositories {
             return await context.Sales.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.UserName.StartsWith (searchKey)).Select (s => s.UserName).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
         }
         public async Task<List<string>> GetProductNames (string searchKey) {
-            return await context.Sales.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.ProductName.StartsWith (searchKey)).Select (s => s.ProductName).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
+            return await context.Sales.Where (s => string.IsNullOrEmpty (searchKey) ? true : (s.ProductName.StartsWith (searchKey)||s.ProductId.StartsWith(searchKey))).Select (s => s.ProductId + " - " + s.ProductName).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
         }
         public async Task<List<string>> GetCityNames (string searchKey) {
             return await context.Cities.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.Name.StartsWith (searchKey)).Select (s => s.Name).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
         }
-        // public async Task<List<string>> GetCityNames (string searchKey) {
-        //     return await context.Cities.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.Name.StartsWith (searchKey)).Select (s => s.Name).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
-        // }
+        public async Task<List<Sale>> GetSaleList(SaleListFilterModel filter)
+        {
+            return await context.Sales.Where(s=>(filter.Id>0?s.Id==filter.Id:true)).ToListAsync();
+        }
     }
 }

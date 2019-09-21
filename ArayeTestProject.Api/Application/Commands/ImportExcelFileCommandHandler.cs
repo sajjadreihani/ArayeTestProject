@@ -60,16 +60,15 @@ namespace ArayeTestProject.Api.Application.Commands {
                             File.Delete (fullPath);
                         using (var targetStream = System.IO.File.Create (fullPath)) {
                             await section.Body.CopyToAsync (targetStream);
-                            string sFileExtension = ".xlsx";
                             ISheet citySheet, saleSheet;
                             using (var stream = targetStream) {
 
                                 stream.Position = 0;
-                                if (sFileExtension == ".xls") {
+                                try {
                                     HSSFWorkbook hssfwb = new HSSFWorkbook (stream); //This will read the Excel 97-2000 formats  
                                     citySheet = hssfwb.GetSheet ("Cities");
                                     saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  
-                                } else {
+                                } catch {
                                     XSSFWorkbook hssfwb = new XSSFWorkbook (stream); //This will read 2007 Excel format  
                                     citySheet = hssfwb.GetSheet ("Cities");
                                     saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  
@@ -93,7 +92,7 @@ namespace ArayeTestProject.Api.Application.Commands {
                                         CityId = cities.First (c => c.Name == row.GetCell (0).StringCellValue).Id,
                                             UserName = row.GetCell (1).StringCellValue,
                                             ProductName = row.GetCell (2).StringCellValue,
-                                            ProductId = (int) row.GetCell (3).NumericCellValue,
+                                            ProductId =  row.GetCell (3).StringCellValue,
                                             Price = (long) row.GetCell (4).NumericCellValue,
                                     });
                                 }
@@ -110,16 +109,6 @@ namespace ArayeTestProject.Api.Application.Commands {
             }
 
             return Unit.Value;
-        }
-        private static Encoding GetEncoding (MultipartSection section) {
-            MediaTypeHeaderValue mediaType;
-            var hasMediaTypeHeader = MediaTypeHeaderValue.TryParse (section.ContentType, out mediaType);
-            // UTF-7 is insecure and should not be honored. UTF-8 will succeed in 
-            // most cases.
-            if (!hasMediaTypeHeader || Encoding.UTF7.Equals (mediaType.Encoding)) {
-                return Encoding.UTF8;
-            }
-            return mediaType.Encoding;
         }
     }
 

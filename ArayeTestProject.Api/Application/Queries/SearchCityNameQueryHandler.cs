@@ -13,7 +13,7 @@ namespace ArayeTestProject.Api.Application.Queries {
         }
 
         public async Task<List<string>> Handle (SearchCityNameQuery request, CancellationToken cancellationToken) {
-            return await repository.GetNames (request.SearchKey);
+            return await repository.GetCityNames (request.SearchKey);
         }
     }
 }

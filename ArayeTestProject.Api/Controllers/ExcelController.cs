@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ArayeTestProject.Api.Application.Commands;
+using ArayeTestProject.Api.Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace ArayeTestProject.Api.Controllers {
         // GET api/excel/generate
         [HttpGet ("generate")]
         public async Task<IActionResult> Get () {
-            var command = await mediator.Send (new GenerateExcelFileCommand ());
+            var command = await mediator.Send (new GenerateExcelFileQuery ());
             return Ok (command.Url);
         }
 

@@ -10,7 +10,7 @@ namespace ArayeTestProject.Api.Application.Models.Domain {
 
         [StringLength (50)]
         public string ProductName { get; set; }
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         public long Price { get; set; }
 
         public long CityId { get; set; }

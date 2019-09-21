@@ -40,5 +40,8 @@ namespace ArayeTestProject.Api.Presistences.Repositories {
         public async Task<List<string>> GetCityNames (string searchKey) {
             return await context.Cities.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.Name.StartsWith (searchKey)).Select (s => s.Name).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
         }
+        // public async Task<List<string>> GetCityNames (string searchKey) {
+        //     return await context.Cities.Where (s => string.IsNullOrEmpty (searchKey) ? true : s.Name.StartsWith (searchKey)).Select (s => s.Name).GroupBy (s => s).Select (s => s.FirstOrDefault ()).ToListAsync ();
+        // }
     }
 }

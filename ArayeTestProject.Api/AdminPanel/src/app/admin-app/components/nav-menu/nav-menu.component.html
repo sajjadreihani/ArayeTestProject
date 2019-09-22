@@ -22,19 +22,14 @@
   </a>
   <mat-nav-list mat-list-item class="expanding" role="list" *ngIf="MainInfo">
     <a mat-list-item matRipple [matRippleColor]="'#d9d9d922'" [routerLinkActive]='["link-active"]'
-      [routerLink]='["/Admin/AddNews"]'>
+      [routerLink]='["/Admin/AddSale"]'>
       <mat-icon>add</mat-icon>
       <span>Add Sale</span>
     </a>
     <a mat-list-item matRipple [matRippleColor]="'#d9d9d922'" [routerLinkActive]='["link-active"]'
-      [routerLink]='["/Admin/NewsList"]'>
+      [routerLink]='["/Admin/SaleList"]'>
       <mat-icon>list_alt</mat-icon>
       <span>Sale List</span>
     </a>
   </mat-nav-list>
-  <a mat-list-item (click)="collpaseAll()" [routerLinkActive]='["link-active"]' [routerLink]='["/Admin/MessagesList"]'
-    matRipple [matRippleColor]="'#d9d9d922'" role="listitem">
-    <mat-icon>chat</mat-icon>
-    <span>Messages List</span>
-  </a>
 </mat-list>

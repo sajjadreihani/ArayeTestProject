@@ -50,52 +50,40 @@ namespace ArayeTestProject.Api.Application.Commands {
                             Directory.CreateDirectory (newPath);
                         }
                         fullPath = Path.Combine (newPath, "testdata.xlsx");
-                        if (File.Exists (fullPath))
-                            File.Delete (fullPath);
-                        using (var targetStream = System.IO.File.Create (fullPath)) {
-                            await section.Body.CopyToAsync (targetStream);
-                            ISheet citySheet, saleSheet;
-                            using (var stream = targetStream) {
+                        var targetStream = System.IO.File.Create (fullPath);
+                        await section.Body.CopyToAsync (targetStream);
+                        ISheet citySheet, saleSheet;
+                        await targetStream.FlushAsync();
+                        targetStream.Seek(0,SeekOrigin.Begin);
+                        XSSFWorkbook hssfwb = new XSSFWorkbook (targetStream); //This will read 2007 Excel format  
+                        citySheet = hssfwb.GetSheet ("Cities");
+                        saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  
+                        for (int i = (citySheet.FirstRowNum + 1); i <= citySheet.LastRowNum; i++) //Read Excel File
+                        {
 
-                                stream.Position = 0;
-                                try {
-                                    HSSFWorkbook hssfwb = new HSSFWorkbook (stream); //This will read the Excel 97-2000 formats  
-                                    citySheet = hssfwb.GetSheet ("Cities");
-                                    saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  
-                                } catch {
-                                    XSSFWorkbook hssfwb = new XSSFWorkbook (stream); //This will read 2007 Excel format  
-                                    citySheet = hssfwb.GetSheet ("Cities");
-                                    saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  
-                                }
-                                for (int i = (citySheet.FirstRowNum + 1); i <= citySheet.LastRowNum; i++) //Read Excel File
-                                {
-
-                                    IRow row = citySheet.GetRow (i);
-                                    if (row == null) continue;
-                                    cities.Add (new City () {
-                                        Name = row.GetCell (0).StringCellValue
-                                    });
-                                }
-                                cities = await repository.AddCities (cities);
-                                for (int i = (saleSheet.FirstRowNum + 1); i <= saleSheet.LastRowNum; i++) //Read Excel File
-                                {
-
-                                    IRow row = saleSheet.GetRow (i);
-                                    if (row == null) continue;
-                                    sales.Add (new Sale () {
-                                        CityId = cities.First (c => c.Name == row.GetCell (0).StringCellValue).Id,
-                                            UserName = row.GetCell (1).StringCellValue,
-                                            ProductName = row.GetCell (2).StringCellValue,
-                                            ProductId = row.GetCell (3).StringCellValue,
-                                            Price = (long) row.GetCell (4).NumericCellValue,
-                                    });
-                                }
-                                if (sales.Count > 0)
-                                    await repository.AddSales (sales);
-                                if (File.Exists (fullPath))
-                                    File.Delete (fullPath);
-                            }
+                            IRow row = citySheet.GetRow (i);
+                            if (row == null) continue;
+                            cities.Add (new City () {
+                                Name = row.GetCell (0).StringCellValue
+                            });
                         }
+                        cities = await repository.AddCities (cities);
+                        for (int i = (saleSheet.FirstRowNum + 1); i <= saleSheet.LastRowNum; i++) //Read Excel File
+                        {
+
+                            IRow row = saleSheet.GetRow (i);
+                            if (row == null) continue;
+                            sales.Add (new Sale () {
+                                CityId = cities.First (c => c.Name == row.GetCell (0).StringCellValue).Id,
+                                    UserName = row.GetCell (1).StringCellValue,
+                                    ProductName = row.GetCell (2).StringCellValue,
+                                    ProductId = row.GetCell (3).StringCellValue,
+                                    Price = (long) row.GetCell (4).NumericCellValue,
+                            });
+                        }
+                        if (sales.Count > 0)
+                            await repository.AddSales (sales);
+
                     }
                 }
 

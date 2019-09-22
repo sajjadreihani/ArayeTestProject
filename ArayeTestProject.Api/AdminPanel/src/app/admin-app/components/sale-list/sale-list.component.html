@@ -1,0 +1,114 @@
+<div class="cssload-bell" *ngIf="loading">
+  <div class="cssload-circle">
+    <div class="cssload-inner"></div>
+  </div>
+  <div class="cssload-circle">
+    <div class="cssload-inner"></div>
+  </div>
+  <div class="cssload-circle">
+    <div class="cssload-inner"></div>
+  </div>
+  <div class="cssload-circle">
+    <div class="cssload-inner"></div>
+  </div>
+  <div class="cssload-circle">
+    <div class="cssload-inner"></div>
+  </div>
+</div>
+<div class="col-md-12">
+
+<mat-card class="col-md-12" *ngIf="!loading">
+  <mat-toolbar class="mat-primary">
+    <h1>Sale List</h1>
+  </mat-toolbar>
+
+  <mat-card-content class="card-body" style="display: flex;">
+    <div class="col-md-3">
+        <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="text" matInput placeholder="User Name" [(ngModel)]="filter.userName" name="userName"
+                 (input)="LoadData();">
+    
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="text" matInput placeholder="Product Name" [(ngModel)]="filter.productName" name="product" 
+                (input)="LoadData();">
+    
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="text" matInput placeholder="Product Id" [(ngModel)]="filter.productId" name="productId" 
+                (input)="LoadData();">
+    
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="text" matInput placeholder="City Name" [(ngModel)]="filter.cityName" name="cityName"
+                  (input)="LoadData();">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="number" matInput placeholder="Min Price" [(ngModel)]="filter.minPrice" name="minprice"   (input)="LoadData();">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="col-md-8">
+              <input type="number" matInput placeholder="Max Price" [(ngModel)]="filter.maxPrice" name="maxprice"   (input)="LoadData();">
+            </mat-form-field>
+          </div>
+    
+    </div>
+    <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Product Id</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">City Name</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let n of sale">
+          <td>{{n.id}}</td>
+          <td>{{n.productId}}</td>
+          <td>{{n.productName}}</td>
+          <td>{{n.cityName}}</td>
+          <td>{{n.userName}}</td>
+          <td>{{n.price}}</td>
+          <td>
+            <a mat-button [routerLink]="['/Admin/EditSale/'+n.id]">Edit</a>
+            <button mat-button color="warn" (click)="saleId = n.id" data-toggle="modal" data-target="#exampleModalCenter">Remove</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+</div>
+  </mat-card-content>
+</mat-card>
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Warning!</h5>
+
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to remove this Sale?</p>
+      </div>
+      <div class="modal-footer">
+        <button mat-button color="warn" (click)="Remove()">Yes</button>
+        <button mat-button class="btn btn-secondary" data-dismiss="modal">No!</button>
+      </div>
+    </div>
+  </div>
+</div>

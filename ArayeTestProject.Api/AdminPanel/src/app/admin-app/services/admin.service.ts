@@ -16,7 +16,7 @@ export class AdminService {
     const formData: FormData = new FormData();
     console.log(file);
     formData.append('file', file, file.name);
-    const uploadReq = new HttpRequest('POST', `/api/excel/import`, formData);
+    const uploadReq = new HttpRequest('POST', `/api/excel/importfile`, formData);
     return this.http.request(uploadReq);
   }
 

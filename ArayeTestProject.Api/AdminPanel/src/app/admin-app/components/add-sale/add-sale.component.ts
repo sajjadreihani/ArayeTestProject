@@ -3,11 +3,12 @@ import { Sale, Product, City } from '../../models/admin.model';
 import { AdminService } from '../../services/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-add-news',
-  templateUrl: './add-news.component.html',
-  styleUrls: ['./add-news.component.css']
+  selector: 'app-add-sale',
+  templateUrl: './add-sale.component.html',
+  styleUrls: ['./add-sale.component.css']
 })
 export class AddSaleComponent implements OnInit {
   sale: Sale = {
@@ -22,16 +23,25 @@ export class AddSaleComponent implements OnInit {
   products: Product[] = [];
   cities: City[] = [];
   product = '';
+  ss = false;
   constructor(private service: AdminService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
   }
   Save() {
+    const products = this.product.split('-');
+    if (products.length < 2)
+    {
+      this.snackBar.open('Please Select Valid Product','OK!');
+    }
+    this.sale.productId = products[0].replace(' ', '');
+    this.sale.productName = products[1].replace(' ', '');
     this.service.CreateSale(this.sale).subscribe(res => {
       this.router.navigateByUrl('/Admin/SaleList');
 
     }, err => {
-      this.snackBar.open(err.body, 'OK!');
+
+      this.snackBar.open(err.error.data.errorMessage, 'OK!');
 
     });
   }
@@ -41,7 +51,7 @@ export class AddSaleComponent implements OnInit {
     });
   }
   ProductChange() {
-    this.service.GetProductNameList(this.sale.productName).subscribe(res => {
+    this.service.GetProductNameList(this.product).subscribe(res => {
       this.products = res;
     });
   }

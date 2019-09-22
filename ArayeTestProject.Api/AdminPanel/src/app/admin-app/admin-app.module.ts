@@ -27,8 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddSaleComponent } from './components/add-sale/add-sale.component';
-import { EditNewsComponent } from './components/edit-news/edit-news.component';
-import { NewsListComponent } from './components/news-list/news-list.component';
+import { EditSaleComponent } from './components/edit-sale/edit-sale.component';
+import { SaleListComponent } from './components/sale-list/sale-list.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { NewsListComponent } from './components/news-list/news-list.component';
     NavMenuComponent,
     AdminHeaderComponent,
     AddSaleComponent,
-    EditNewsComponent,
-    NewsListComponent
+    EditSaleComponent,
+    SaleListComponent
   ],
   imports: [
     CommonModule,
@@ -71,8 +71,8 @@ import { NewsListComponent } from './components/news-list/news-list.component';
           { path: 'Home', component: HomeComponent },
           { path: 'ImportData', component: ImportDataComponent },
           { path: 'AddSale', component: AddSaleComponent },
-          { path: 'EditSale/:id', component: EditNewsComponent },
-          { path: 'SaleList', component: NewsListComponent },
+          { path: 'EditSale/:id', component: EditSaleComponent },
+          { path: 'SaleList', component: SaleListComponent },
 
           { path: '**', redirectTo: 'Home' },
         ]

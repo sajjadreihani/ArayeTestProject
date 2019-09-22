@@ -27,7 +27,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_ProductId () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (false);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (false);
 
                 var mockMapper = new Mock<IMapper> ();
 
@@ -44,9 +44,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_ProductName () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (false);
-
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (false);
                 var mockMapper = new Mock<IMapper> ();
 
                 UpdateSaleCommandHandler handler = new UpdateSaleCommandHandler (repositoryMock.Object, mockMapper.Object);
@@ -62,8 +60,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_UserName () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (true);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsUsertNameExist (It.IsAny<string> ())).ReturnsAsync (false);
 
                 var mockMapper = new Mock<IMapper> ();
@@ -81,8 +78,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_CityName () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (true);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsUsertNameExist (It.IsAny<string> ())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsCityNameExist (It.IsAny<string> ())).ThrowsAsync (new CityNameNotFoundException ());
 
@@ -103,8 +99,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_SaleId () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (true);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsUsertNameExist (It.IsAny<string> ())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsCityNameExist (It.IsAny<string> ())).ReturnsAsync (10);
                 repositoryMock.Setup (rm => rm.UpdateSale (It.IsAny<Sale> ())).ThrowsAsync (new SaleNotFoundException ());
@@ -125,8 +120,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Invalid_Price () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (true);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsUsertNameExist (It.IsAny<string> ())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsCityNameExist (It.IsAny<string> ())).ReturnsAsync (10);
                 repositoryMock.Setup (rm => rm.UpdateSale (It.IsAny<Sale> ())).ThrowsAsync (new MaximumAmountThresholdException ());
@@ -147,8 +141,7 @@ namespace ArayeTestProject.Test.Application.Command {
         public async Task UpdateSale_Test_With_Valid_Data () {
             try {
                 var repositoryMock = new Mock<IMainRepository> ();
-                repositoryMock.Setup (rm => rm.IsProductIdExist (It.IsAny<string> ())).ReturnsAsync (true);
-                repositoryMock.Setup (rm => rm.IsProductNameExist (It.IsAny<string> ())).ReturnsAsync (true);
+                repositoryMock.Setup (rm => rm.IsProductExist (It.IsAny<string> (),It.IsAny<string>())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsUsertNameExist (It.IsAny<string> ())).ReturnsAsync (true);
                 repositoryMock.Setup (rm => rm.IsCityNameExist (It.IsAny<string> ())).ReturnsAsync (10);
                 repositoryMock.Setup (rm => rm.UpdateSale (It.IsAny<Sale> ()));

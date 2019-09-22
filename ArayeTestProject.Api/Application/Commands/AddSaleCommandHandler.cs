@@ -17,17 +17,14 @@ namespace ArayeTestProject.Api.Application.Commands {
             this.mapper = mapper;
         }
         public async Task<Unit> Handle (AddSaleCommand request, CancellationToken cancellationToken) {
-            if (!(await repository.IsProductIdExist (request.Resource.ProductId)))
-                throw new ProductNameNotFoundException ();
-
-            if (!(await repository.IsProductNameExist (request.Resource.ProductName)))
+            if (!(await repository.IsProductExist (request.Resource.ProductId,request.Resource.ProductName)))
                 throw new ProductNameNotFoundException ();
 
             if (!(await repository.IsUsertNameExist (request.Resource.UserName)))
                 throw new UserNameNotFoundException ();
 
             var lastPrice = await repository.GetLastSalePrice (mapper.Map<SaleListFilterModel> (request.Resource));
-            if (lastPrice + (lastPrice * 0.15) < request.Resource.Price)
+            if (lastPrice > 0 && lastPrice + (lastPrice * 0.15) < request.Resource.Price)
                 throw new MaximumAmountThresholdException ();
 
             var sale = mapper.Map<SaleResource, Sale> (request.Resource);

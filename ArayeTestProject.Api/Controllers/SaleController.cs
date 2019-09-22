@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ArayeTestProject.Api.Controllers {
     [Route ("api/sale")]
+    [ApiController]
     public class SaleController : ControllerBase {
         private readonly IMediator mediator;
 

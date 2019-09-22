@@ -8,17 +8,13 @@ import { AdminappComponent } from '../../adminapp.component';
   styleUrls: ['./admin-header.component.css']
 })
 export class AdminHeaderComponent implements OnInit {
-  fullscreen: boolean = false;
+  fullscreen = false;
 
   constructor(private service: AdminService, private main: AdminappComponent) { }
 
   ngOnInit() {
   }
-  Logout() {
-    this.service.LogOut().subscribe(res => {
-      this.main.signedIn = false;
-    });
-  }
+
   goFullScreen() {
     if (this.fullscreen) {
       if (document['exitFullscreen']) {
@@ -33,8 +29,7 @@ export class AdminHeaderComponent implements OnInit {
         /* IE/Edge */
         document['msExitFullscreen']();
       }
-    }
-    else {
+    } else {
       if (document.documentElement['requestFullscreen']) {
         document.documentElement['requestFullscreen']();
       } else if (document.documentElement['mozRequestFullScreen']) {

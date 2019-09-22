@@ -6,47 +6,54 @@
     <form #f="ngForm">
       <div class="form-group">
         <mat-form-field class="col-md-8">
-          <input type="text" matInput placeholder="User Name" #userName [(ngModel)]="sale.userName" name="userName"
+          <input type="text" matInput placeholder="User Name" #userNames [(ngModel)]="sale.userName" name="userName"
             required [matAutocomplete]="usernameauto" (input)="UserChange();">
           <mat-autocomplete #usernameauto="matAutocomplete">
             <mat-option *ngFor="let option of usernames" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="!userName.valid">
+          <mat-error *ngIf="!userNames.valid">
             User Name Is Required
           </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field class="col-md-8">
-          <input type="text" matInput placeholder="Product" #product [(ngModel)]="product" name="product" required
+          <input type="text" matInput placeholder="Product" #productss [(ngModel)]="product" name="product" required
             [matAutocomplete]="productauto" (input)="ProductChange();">
           <mat-autocomplete #productauto="matAutocomplete">
-            <mat-option *ngFor="let option of products" [value]="option">
-              {{option}}
+            <mat-option *ngFor="let option of products" [value]="option.productId + ' - ' + option.productName">
+              {{option.productId + ' - ' + option.productName}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="!product.valid">
+          <mat-error *ngIf="!productss.valid">
             Product Is Required
           </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field class="col-md-8">
-          <input type="text" matInput placeholder="City Name" #cityName [(ngModel)]="sale.cityName" name="cityName"
+          <input type="text" matInput placeholder="City Name" #cityNames [(ngModel)]="sale.cityName" name="cityName"
             required [matAutocomplete]="citynameauto" (input)="CityChange();">
           <mat-autocomplete #citynameauto="matAutocomplete">
-            <mat-option *ngFor="let option of cities" [value]="option">
-              {{option}}
+            <mat-option *ngFor="let option of cities" [value]="option.name">
+              {{option.name}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="!cityName.valid">
+          <mat-error *ngIf="!cityNames.valid">
             City Is Required
           </mat-error>
         </mat-form-field>
       </div>
-
+      <div class="form-group">
+        <mat-form-field class="col-md-8">
+          <input type="number" matInput placeholder="Price" #prices [(ngModel)]="sale.price" name="price" required >
+          <mat-error *ngIf="!prices.valid">
+            Price Is Required
+          </mat-error>
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
   <mat-card-actions>

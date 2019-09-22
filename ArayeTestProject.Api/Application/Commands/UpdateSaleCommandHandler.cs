@@ -17,10 +17,7 @@ namespace ArayeTestProject.Api.Application.Commands {
             this.mapper = mapper;
         }
         public async Task<Unit> Handle (UpdateSaleCommand request, CancellationToken cancellationToken) {
-            if (!(await repository.IsProductIdExist (request.Resource.ProductId)))
-                throw new ProductNameNotFoundException ();
-
-            if (!(await repository.IsProductNameExist (request.Resource.ProductName)))
+            if (!(await repository.IsProductExist (request.Resource.ProductId,request.Resource.ProductName)))
                 throw new ProductNameNotFoundException ();
 
             if (!(await repository.IsUsertNameExist (request.Resource.UserName)))

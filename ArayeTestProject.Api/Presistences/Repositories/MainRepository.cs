@@ -24,9 +24,9 @@ namespace ArayeTestProject.Api.Presistences.Repositories {
             context.Database.ExecuteSqlCommand ("TRUNCATE TABLE Sales");
             context.Cities.RemoveRange (context.Cities);
             await context.BulkInsertAsync (cities);
-            //await context.SaveChangesAsync ();
+            
 
-            return cities;
+            return await context.Cities.ToListAsync();
         }
 
         public async Task AddSales (List<Sale> sales) {
@@ -50,7 +50,7 @@ namespace ArayeTestProject.Api.Presistences.Repositories {
                     (string.IsNullOrEmpty (filter.ProductId) ? true : s.ProductId.Contains (filter.ProductId)) &&
                     (filter.MaxPrice > 0 ? s.Price <= filter.MaxPrice : true) && s.Price > filter.MinPrice)
                 .Include (s => s.City).Where (s => string.IsNullOrEmpty (filter.CityName) ? true : s.City.Name.Contains (filter.CityName))
-                .Skip (filter.Page * filter.Count).Take (filter.Count).ToListAsync ();
+                .OrderByDescending(s => s.Id).Skip (filter.Page * filter.Count).Take (filter.Count).ToListAsync ();
         }
         public async Task UpdateSale (Sale newsale) {
             var sale = await context.Sales.FirstOrDefaultAsync (s => s.Id == newsale.Id);
@@ -66,14 +66,13 @@ namespace ArayeTestProject.Api.Presistences.Repositories {
             await context.SaveChangesAsync ();
         }
 
-        public async Task<bool> IsProductNameExist (string productName) {
-            return await context.Sales.AnyAsync (s => s.ProductName == productName);
-        }
+
         public async Task<bool> IsUsertNameExist (string userName) {
             return await context.Sales.AnyAsync (s => s.UserName == userName);
         }
-        public async Task<bool> IsProductIdExist (string productId) {
-            return await context.Sales.AnyAsync (s => s.ProductId == productId);
+
+        public async Task<bool> IsProductExist (string productId, string ProductName) {
+            return await context.Sales.AnyAsync (s => s.ProductId == productId && s.ProductName==ProductName);
         }
         public async Task<long> IsCityNameExist (string cityName) {
             var city = await context.Cities.FirstOrDefaultAsync (s => s.Name == cityName);

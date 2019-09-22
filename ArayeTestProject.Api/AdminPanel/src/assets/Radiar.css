@@ -1,0 +1,282 @@
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: bold;
+  src: url('/fonts/eot/iranyekanwebboldfanum.eot');
+  src: url('/fonts/eot/iranyekanwebboldfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebboldfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebboldfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 100;
+  src: url('/fonts/eot/iranyekanwebthinfanum.eot');
+  src: url('/fonts/eot/iranyekanwebthinfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebthinfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebthinfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/eot/iranyekanweblightfanum.eot');
+  src: url('/fonts/eot/iranyekanweblightfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanweblightfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanweblightfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/eot/iranyekanwebregularfanum.eot');
+  src: url('/fonts/eot/iranyekanwebregularfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebregularfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebregularfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/eot/iranyekanwebmediumfanum.eot');
+  src: url('/fonts/eot/iranyekanwebmediumfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebmediumfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebmediumfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/eot/iranyekanwebextraboldfanum.eot');
+  src: url('/fonts/eot/iranyekanwebextraboldfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebextraboldfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebextraboldfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 900;
+  src: url('/fonts/eot/iranyekanwebblackfanum.eot');
+  src: url('/fonts/eot/iranyekanwebblackfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebblackfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebblackfanum.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 950;
+  src: url('/fonts/eot/iranyekanwebextrablackfanum.eot');
+  src: url('/fonts/eot/iranyekanwebextrablackfanum.eot?#iefix') format('embedded-opentype'), /* IE6-8 */
+  url('/fonts/woff/iranyekanwebextrablackfanum.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+  url('/fonts/ttf/iranyekanwebextrablackfanum.ttf') format('truetype');
+}
+body {
+  line-height: 1.7;
+  font-family: iranyekan !important;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-x: hidden;
+  text-align: left;
+}
+a:hover {
+  text-decoration: none;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  display:none;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6
+,.mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab, .mat-raised-button, .mat-stroked-button
+,.mat-card,.mat-form-field,.mat-option,.mat-select,mat-checkbox,.mat-radio,.mat-radio-button,.mat-tooltip{
+font:inherit !important;
+}
+  .mat-sidenav{
+  padding:0 !important;
+}
+
+.hamburger {
+  left: 0;
+  position: absolute;
+}
+  .hamburger.is-active .hamburger-inner, .hamburger.is-active .hamburger-inner::after, .hamburger.is-active .hamburger-inner::before {
+    background-color: #fff;
+  }
+
+.hamburger-inner, .hamburger-inner::after, .hamburger-inner::before {
+  background-color: #fff;
+}
+.mat-nav-list a {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mat-ripple{
+  cursor:pointer;
+}
+.ng-scrollbar-view{
+  height:100% !important;
+}
+.mat-list .mat-list-item, .mat-nav-list .mat-list-item {
+  font: inherit;
+}
+.dark-theme .mat-list .mat-nav-list, .dark-theme .mat-nav-list .mat-nav-list {
+  background-color: #515151;
+}
+.light-theme .mat-list .mat-nav-list, .light-theme .mat-nav-list .mat-nav-list {
+  background-color: #E0E0E0;
+}
+.expanding {
+  animation-duration: 0.5s;
+  animation-name: lineInserted;
+  transition: max-height 1s;
+  overflow-y:hidden;
+}
+.dark-theme .mat-focused .mat-form-field-label {
+  color: #40C4FF !important;
+  }
+  
+  .dark-theme .mat-form-field:not(.mat-form-field-invalid) .mat-form-field-ripple {
+  background-color: #40C4FF !important;
+  }
+@keyframes lineInserted {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 200px; /* your line height here */
+  }
+}
+  .mat-list .mat-nav-list .mat-list-item .mat-list-item-content, .mat-nav-list .mat-nav-list .mat-list-item .mat-list-item-content {
+    margin-left: 10%;
+  }
+
+.mat-list .mat-list-item span, .mat-nav-list .mat-list-item span{
+  margin-left:7%;
+}
+.mat-form-field {
+  text-align: left !important;
+}
+.mat-checkbox-inner-container{
+  margin-left:auto !important;
+  margin-right:8px !important;
+}
+.hidden{
+  display:none;
+}
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+  padding: .375rem .75rem !important;
+}
+.mat-card-actions{
+  text-align:left;
+}
+.dark-theme .mat-button.disabled, .dark-theme .mat-button:disabled {
+  background-color: #7e7f80;
+}
+.light-theme .mat-button.disabled,.light-theme .mat-button:disabled {
+  background-color: #cbcccc;
+}
+.mat-button[disabled], .mat-flat-button[disabled], .mat-icon-button[disabled], .mat-stroked-button[disabled] {
+  cursor: not-allowed !important;
+}
+.container-fluid{
+  margin: 2% auto;
+}
+
+  .expand {
+  position: absolute;
+  right: 0;
+}
+.mat-drawer-inner-container{
+  overflow: hidden !important;
+}
+.dark-theme .sub-list {
+  background-color: #616060 !important;
+
+}
+.light-theme .sub-list {
+  background-color: #BDBDBD66 !important;
+}
+.sub-list .mat-list-item-content, .sub-list .mat-list-item-content {
+  margin-left: 15% !important;
+}
+.dark-theme .link-active, .dark-theme .mat-list a:focus, .dark-theme .mat-nav-list .mat-list-item:focus {
+  border-right: solid 5px #0081ef;
+  background-color: #303030;
+}
+.dark-theme .mat-list a:hover {
+  background-color: #373636 !important;
+}
+.light-theme .link-active, .light-theme .mat-list a:focus, .light-theme .mat-nav-list .mat-list-item:focus {
+  border-right: solid 5px #0081ef;
+  background-color: #BDBDBD;
+}
+.modal-backdrop{
+  z-index: 0 !important;
+}
+.light-theme .mat-list a:hover {
+  background-color: rgba(158, 158, 158, 0.84) !important;
+}
+.logo {
+  height: 64px;
+  color: #0081ef;
+}
+  .logo p {
+    font-size: 250%;
+    font-weight: 900;
+    padding-left:5%;
+    text-align:left;
+  }
+.ng-scrollbar-view {
+  overflow-x:hidden !important;
+}
+.btn-profile {
+  left: 6%;
+  position: absolute !important;
+  padding: 0 !important;
+  height:64px;
+}
+.btn-setting {
+  left: 1%;
+  position: absolute !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+}
+.btn-fullscreen {
+  right: 3.5%;
+  position: absolute !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+}
+.arrow-profile {
+  position: absolute !important;
+  top:24%;
+
+}
+.img-profile{
+  padding:0;
+  height:48px;
+  width:48px;
+}
+
+.mat-menu-item {
+  background: 0 0;
+  font:inherit !important;
+}
+

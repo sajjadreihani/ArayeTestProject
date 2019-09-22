@@ -12,9 +12,8 @@ namespace ArayeTestProject.Api.Presistences.IRepositories {
         Task<List<City>> GetCityNames (string searchKey);
         Task<List<Sale>> GetSaleList (SaleListFilterModel filter);
         Task UpdateSale (Sale newsale);
-        Task<bool> IsProductNameExist (string productName);
         Task<bool> IsUsertNameExist (string userName);
-        Task<bool> IsProductIdExist (string productId);
+        Task<bool> IsProductExist (string productId,string productName);
         Task<long> IsCityNameExist (string cityName);
         Task<long> GetLastSalePrice (SaleListFilterModel filter);
         Task AddSale (Sale sale);

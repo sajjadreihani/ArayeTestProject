@@ -23,9 +23,13 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme/radiar-theme.scss",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

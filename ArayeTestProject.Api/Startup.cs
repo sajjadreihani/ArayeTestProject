@@ -32,9 +32,7 @@ namespace ArayeTestProject.Api {
                 x.MultipartBodyLengthLimit = int.MaxValue;
             });
             services.AddAutoMapper (AppDomain.CurrentDomain.GetAssemblies ());
-
             services.AddTransient<IMainRepository, MainRepository> ();
-            //In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles (configuration => {
                 configuration.RootPath = "AdminPanel/dist/browser";
             });
@@ -45,7 +43,6 @@ namespace ArayeTestProject.Api {
             if (env.IsDevelopment ()) {
                 app.UseDeveloperExceptionPage ();
             } else {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts ();
             }
             app.UseStaticFiles ();
@@ -54,12 +51,8 @@ namespace ArayeTestProject.Api {
             app.UseHttpsRedirection ();
             app.UseMvc ();
             app.UseSpa (spa => {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "AdminPanel";
                 if (env.IsDevelopment ()) {
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                     spa.UseAngularCliServer (npmScript: "start");
                 }
             });

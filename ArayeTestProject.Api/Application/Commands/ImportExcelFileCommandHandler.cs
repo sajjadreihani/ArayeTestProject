@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
-using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 
@@ -53,8 +52,8 @@ namespace ArayeTestProject.Api.Application.Commands {
                         var targetStream = System.IO.File.Create (fullPath);
                         await section.Body.CopyToAsync (targetStream);
                         ISheet citySheet, saleSheet;
-                        await targetStream.FlushAsync();
-                        targetStream.Seek(0,SeekOrigin.Begin);
+                        await targetStream.FlushAsync ();
+                        targetStream.Seek (0, SeekOrigin.Begin);
                         XSSFWorkbook hssfwb = new XSSFWorkbook (targetStream); //This will read 2007 Excel format  
                         citySheet = hssfwb.GetSheet ("Cities");
                         saleSheet = hssfwb.GetSheet ("Sales"); //get first sheet from workbook  

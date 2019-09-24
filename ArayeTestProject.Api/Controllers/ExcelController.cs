@@ -31,7 +31,7 @@ namespace ArayeTestProject.Api.Controllers {
                 await mediator.Send (new ImportExcelFileCommand (HttpContext));
                 return Ok ();
             } catch (Exception ex) {
-                return BadRequest (ex);
+                return BadRequest (ex.Message);
             }
         }
 

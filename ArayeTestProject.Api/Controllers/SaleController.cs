@@ -30,7 +30,7 @@ namespace ArayeTestProject.Api.Controllers {
             try {
                 await mediator.Send (new AddSaleCommand (resource));
                 return Ok ();
-            } catch (ProductNameNotFoundException) {
+            } catch (ProductNotFoundException) {
                 return StatusCode (400, new ErrorMessageModel () {
                     Data = new ErrorData () {
                         ErrorCode = 400,
@@ -74,7 +74,7 @@ namespace ArayeTestProject.Api.Controllers {
             try {
                 await mediator.Send (new UpdateSaleCommand (resource));
                 return Ok ();
-            } catch (ProductNameNotFoundException) {
+            } catch (ProductNotFoundException) {
                 return StatusCode (400, new ErrorMessageModel () {
                     Data = new ErrorData () {
                         ErrorCode = 400,
